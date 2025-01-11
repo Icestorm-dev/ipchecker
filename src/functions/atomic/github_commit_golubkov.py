@@ -27,7 +27,7 @@ class IPLookupBotFunction(AtomicBotFunctionABC):
     commands: List[str] = ["iplookup"]
     authors: List[str] = ["Nikolay"]
     about: str = "Информация об IP-адресе."
-    description: str = """Эта функция позволяет получать информацию об IP-адресах через API ipstack. 
+    description: str = """Эта функция позволяет получать информацию об IP-адресах через API ipstack.
     Используйте команду /iplookup <IP-адрес>, чтобы получить данные."""
     state: bool = True
 
@@ -77,7 +77,7 @@ class IPLookupBotFunction(AtomicBotFunctionABC):
             # Format and send data
             # Форматирование и отправка данных
             languages = [
-                lang.get('native', 'Неизвестно') 
+                lang.get('native', 'Неизвестно')
                 for lang in data.get('location', {}).get('languages', [])
             ]
             info = (
