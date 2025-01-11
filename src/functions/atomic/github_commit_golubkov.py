@@ -1,13 +1,24 @@
 """Модуль для поиска информации о ip-адресе"""
 
+# import os
+# import logging
+# import requests
+# from typing import List
+# import telebot
+# from telebot import types
+# from telebot.callback_data import CallbackData
+# from bot_func_abc import AtomicBotFunctionABC
+
 import os
 import logging
+from typing import List  # Стандартные библиотеки
+
 import requests
-from typing import List
 import telebot
-from telebot import types
-from telebot.callback_data import CallbackData
-from bot_func_abc import AtomicBotFunctionABC
+from telebot import types  # Сторонние библиотеки
+
+from bot_func_abc import AtomicBotFunctionABC  # Локальные модули
+
 
 
 class IPLookupBotFunction(AtomicBotFunctionABC):
@@ -45,7 +56,7 @@ class IPLookupBotFunction(AtomicBotFunctionABC):
         if not api_key:
             self.bot.send_message(
                 message.chat.id,
-                "\u274C API-ключ не найден. Убедитесь, что переменная окружения IPSTACK_API_KEY установлена."
+                "\u274C API-ключ не найден."
             )
             return
 
