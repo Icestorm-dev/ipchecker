@@ -75,17 +75,26 @@ class IPLookupBotFunction(AtomicBotFunctionABC):
                 return
 
             # Format and send data
+            # Форматирование и отправка данных
+            languages = [
+                lang.get('native', 'Неизвестно') 
+                for lang in data.get('location', {}).get('languages', [])
+            ]
             info = (
                 f"\U0001F4E7 Информация об IP-адресе {ip_address}:\n"
                 f"🌐 Тип IP: {data.get('type', 'Неизвестно')}\n"
-                f"🏳️ Страна: {data.get('country_name', 'Неизвестно')} ({data.get('country_code', 'Неизвестно')})\n"
-                f"📍 Регион: {data.get('region_name', 'Неизвестно')} ({data.get('region_code', 'Неизвестно')})\n"
+                f"🏳️ Страна: {data.get('country_name', 'Неизвестно')} "
+                f"({data.get('country_code', 'Неизвестно')})\n"
+                f"📍 Регион: {data.get('region_name', 'Неизвестно')} "
+                f"({data.get('region_code', 'Неизвестно')})\n"
                 f"🏙️ Город: {data.get('city', 'Неизвестно')}\n"
                 f"📮 Почтовый индекс: {data.get('zip', 'Неизвестно')}\n"
-                f"🌎 Континент: {data.get('continent_name', 'Неизвестно')} ({data.get('continent_code', 'Неизвестно')})\n"
-                f"🗺️ Координаты: {data.get('latitude', 'Неизвестно')}° N, {data.get('longitude', 'Неизвестно')}° E\n"
+                f"🌎 Континент: {data.get('continent_name', 'Неизвестно')} "
+                f"({data.get('continent_code', 'Неизвестно')})\n"
+                f"🗺️ Координаты: {data.get('latitude', 'Неизвестно')}° N, "
+                f"{data.get('longitude', 'Неизвестно')}° E\n"
                 f"📞 Код страны: +{data.get('location', {}).get('calling_code', 'Неизвестно')}\n"
-                f"🗣️ Языки: {', '.join([lang.get('native', 'Неизвестно') for lang in data.get('location', {}).get('languages', [])])}\n"
+                f"🗣️ Языки: {', '.join(languages)}\n"
             )
 
             self.bot.send_message(message.chat.id, info)
